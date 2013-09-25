@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" xmlns:og="http://ogp.me/ns#">
 <head>
 	<title>Angu-Notes - Keep your mind in notes, faster</title>
-	<meta name="description" content="Keep your mind in notes, faster" />
+	<meta name="description" content="Projet démo de gestion de notes sous Angular.js. Aucun langage serveur, tout se passe sous javaScript." />
 	<meta name="author" content="Xavier Boubert http://xavierboubert.fr" />
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,7 +28,7 @@
 				<div class="circle blue"></div>
 			</div>
 
-			<section class="website-description">
+			<section class="website-description" rel="description">
 				<p>
 					Projet démo de gestion de notes sous Angular.js. Aucun langage serveur, tout se passe sous javaScript.
 				</p>
@@ -40,6 +40,66 @@
 			<div class="clear"></div>
 		</header>
 
+		<div class="operations">
+
+			<label class="label">Filtre :</label>
+			<div class="label-input">
+				<input type="text" class="input-text" />
+			</div>
+
+			<div class="add-new">Nouvelle note</div>
+
+			<div class="clear"></div>
+
+		</div>
+
+		<section class="notes" unselectable="on" class="unselectable">
+			<div class="clear-display"></div>
+
+			<article class="note template-1">
+				<header unselectable="on" class="unselectable">
+					<h1>Ma seconde note</h1>
+					<time datetime="2013-09-25 12:55">2013-09-25 12:55</time>
+				</header unselectable="on" class="unselectable">
+				<div class="note-content">
+					<form action="#" method="post">
+						<input type="hidden" name="note-name" />
+						<textarea name="note-text" class="input-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</textarea>
+						<input type="submit" value="Enregistrer" class="input-button button-save" />
+						<input type="button" value="Annuler" class="input-button button-cancel" />
+					</form>
+				</div>
+				<div class="cross-icon"></div>
+			</article>
+
+			<article class="note template-2">
+				<header unselectable="on" class="unselectable">
+					<h1>Ma première note</h1>
+					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
+				</header unselectable="on" class="unselectable">
+				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
+				<div class="cross-icon"></div>
+			</article>
+
+			<article class="note template-3">
+				<header unselectable="on" class="unselectable">
+					<h1>Ma première note</h1>
+					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
+				</header unselectable="on" class="unselectable">
+				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
+				<div class="cross-icon"></div>
+			</article>
+
+			<article class="note template-4">
+				<header unselectable="on" class="unselectable">
+					<h1>Ma première note</h1>
+					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
+				</header unselectable="on" class="unselectable">
+				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
+				<div class="cross-icon"></div>
+			</article>
+
+		</section>
 
 		<footer class="body-footer">
 			<p>

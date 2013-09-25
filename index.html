@@ -40,17 +40,26 @@
 			<div class="clear"></div>
 		</header>
 
-		<div class="operations">
+		<form class="add-note" ng-submit="addNote()">
+			<input id="add-note-input" type="text" class="input-text" ng-model="newNoteTitle" placeholder="Nouvelle note" />
+			<input type="submit" class="submit-invisible" />
+		</form>
 
+		<div class="first-time" ng-show="!notes.length">
+			<p>
+				Commencez par ajouter une première note en utilisant le champs texte juste au dessus.
+			</p>
+			<p>
+				Chaque note ajoutée sera enregistrée dans votre navigateur et ce meme si vous le fermez.
+			</p>
+		</div>
+
+		<div class="operations" ng-show="notes.length>0">
 			<label class="label">Filtre :</label>
 			<div class="label-input">
 				<input type="text" class="input-text" ng-model="query" />
 			</div>
-
-			<div class="add-new" ng-click="newNote()">Nouvelle note</div>
-
 			<div class="clear"></div>
-
 		</div>
 
 		<section class="notes" unselectable="on" class="unselectable">
@@ -59,17 +68,17 @@
 			<article class="note template-{{note.template}} {{note.open}}" ng-repeat="note in notes | filter:query | orderBy:predicate:reverse">
 				<header unselectable="on" class="unselectable">
 					<h1 ng-click="openNote(note)">{{note.title}}</h1>
+					<input id="note-title-{{note.id}}" type="text" class="input-text" value="{{note.title}}">
 					<time datetime="{{note.date | date:'yyyy-MM-dd H:m'}}">{{note.date | date:'dd/MM/yyyy H:m'}}</time>
 				</header unselectable="on" class="unselectable">
 				<div class="note-content">
-					<form ng-submit="updateNote()">
-						<input type="hidden" name="note-name" />
-						<textarea ng-model="noteContent" class="input-text">{{note.content}}</textarea>
+					<form ng-submit="updateNote(note)">
+						<textarea id="note-content-{{note.id}}" class="input-text">{{note.content}}</textarea>
 						<input type="submit" value="Enregistrer" class="input-button button-save" />
 						<input ng-click="cancelUpdateNote(note)" type="button" value="Annuler" class="input-button button-cancel" />
 					</form>
 				</div>
-				<div class="cross-icon" ng-model="note.done"></div>
+				<div class="cross-icon" ng-click="removeNote(note)"></div>
 			</article>
 
 		</section>
@@ -82,7 +91,8 @@
 
 	</div>
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script-->
 	<script type="text/javascript" src="angu-notes.js"></script>
 </body>
 </html>

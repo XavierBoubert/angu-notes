@@ -1,40 +1,74 @@
-function AnguNotesCtrl($scope) {
-	$scope.notes = [
-		{id: 1, template: 1, open: '', title: 'Ma note 1', content: 'hello hi 4', date: new Date(), dateString: '25/09/2013 16:53'},
-		{id: 2, template: 2, open: '', title: 'Ma note 2', content: 'hello hi 5', date: new Date(new Date().getTime() + (24 * 60 * 60 * 1000)), dateString: '26/09/2013 16:53'}
-	];
+function AnguNotesCtrl($scope, $timeout, $filter) {
+	var cacheOpenNoteContent = {
+		title: '',
+		content: ''
+	};
+
+	$scope.notes = [];
 
 	$scope.predicate = '-date';
 
-	$scope.contents = [
-		{id: 1, content: 'hello hi 4'},
-		{id: 5, content: 'hello hi 5'}
-	];
+	$timeout(function() {
+		document.getElementById('add-note-input').focus();
+	});
 
-	$scope.cancelUpdateNote = function() {
+	$scope.addNote = function() {
 		$scope.closeNotes();
-	};
 
-	$scope.newNote = function() {
-		$scope.closeNotes();
 		$scope.notes.push({
-			id: 3, template: 3, open: 'open', title: 'Nouvelle note', content: '', date: new Date(new Date().getTime() + (24 * 60 * 60 * 1000) * 2), dateString: '27/09/2013 16:53'
+			id: 3, isNew: true, template: Math.floor((Math.random() * 4) + 1), open: '', title: $scope.newNoteTitle, content: '', date: new Date(), dateString: $filter('date')(new Date(), 'dd/MM/yyyy hh:mm')
+		});
+		$scope.newNoteTitle = '';
+
+		$scope.openNote($scope.notes[$scope.notes.length - 1]);
+	};
+
+	$scope.closeNotes = function(note) {
+		note = note || {};
+		var hasTrash = true;
+		while(hasTrash) {
+			hasTrash = false;
+			for(var i = 0; i < $scope.notes.length; i++) {
+				$scope.notes[i].open = '';
+				if(note != $scope.notes[i] && $scope.notes[i].isNew) {
+					hasTrash = 1 + i;
+				}
+			}
+			if(hasTrash) {
+				$scope.notes.splice(hasTrash - 1, 1);
+			}
+		}
+	};
+
+	$scope.openNote = function(note) {
+		$scope.closeNotes(note);
+		note.open = 'open';
+
+		cacheOpenNoteContent.title = note.title;
+		cacheOpenNoteContent.content = note.content;
+
+		$timeout(function() {
+			document.getElementById('note-content-' + note.id).focus();
 		});
 	};
 
-	$scope.closeNotes = function() {
-		angular.forEach($scope.notes, function(note) {
-			note.open = '';
-		});
-	};
+	$scope.updateNote = function(note) {
+		note.isNew = false;
+		note.title = document.getElementById('note-title-' + note.id).value
+		note.content = document.getElementById('note-content-' + note.id).value
 
-	$scope.openNote = function(noteToOpen) {
 		$scope.closeNotes();
-		noteToOpen.open = 'open';
 	};
 
-	$scope.updateNote = function() {
-		console.log($scope.noteContent);
+	$scope.cancelUpdateNote = function(note) {
+		document.getElementById('note-title-' + note.id).value = note.title;
+		document.getElementById('note-content-' + note.id).value = note.content;
+
+		$scope.closeNotes();
 	};
 
+	$scope.removeNote = function(note) {
+		note.isNew = true;
+		$scope.closeNotes();
+	};
 }

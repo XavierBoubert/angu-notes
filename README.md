@@ -16,8 +16,8 @@ Fonctionnalités
 * Liste des notes (avec leurs dates d'ajout)
 * Ajout/Suppression/Edition d'une note
 * Réorganisation des notes par Drag & Drop
-* Filtre sur les noms ou dates
+* Mémorisation des notes sous IndexedDB
+* Filtre sur les noms, contenus et dates
 * Tout en CSS3, aucune image
 * Tout en Responsive
 * Le tout en seulement 3 fichiers (HTML, JS et CSS)
-* Mémorisation des notes sous IndexedDB

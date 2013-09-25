@@ -28,6 +28,20 @@ body {
 	font-weight: 300;
 }
 
+p {
+	margin: 1em 0;
+	line-height: 18px;
+}
+
+ul {
+	padding-left: 1.3em;
+}
+
+li {
+	list-style: disc;
+	padding: 0.2em 0;
+}
+
 .body-container {
 	width: 100%;
 	max-width: 960px;
@@ -35,14 +49,13 @@ body {
 }
 
 .body-header {
-	height: 11em;
 	position: relative;
 }
 
 .logo {
 	width: 10em;
 	height: 10em;
-	margin-top: 1em;
+	margin: 1em 0 0 1em;
 	position: relative;
 	overflow: hidden;
 	float: left;
@@ -106,6 +119,20 @@ h1 span {
 	-webkit-transform: translateY(50%) translateX(0);
 }
 
-.body-footer {
+.website-description {
+	padding: 0 1em 0 16em;
 	margin-top: 1em;
+}
+
+.website-description p {
+	font-size: 2em;
+	line-height: 1.5em;
+}
+
+.website-description .link-github {
+	font-size: 1.2em;
+}
+
+.body-footer {
+	padding: 1em;
 }

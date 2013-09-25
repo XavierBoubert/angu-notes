@@ -15,7 +15,7 @@
 </head>
 <body ng-app>
 
-	<div class="body-container">
+	<div class="body-container" ng-controller="AnguNotesCtrl">
 
 		<header class="body-header">
 
@@ -44,10 +44,10 @@
 
 			<label class="label">Filtre :</label>
 			<div class="label-input">
-				<input type="text" class="input-text" />
+				<input type="text" class="input-text" ng-model="query" />
 			</div>
 
-			<div class="add-new">Nouvelle note</div>
+			<div class="add-new" ng-click="newNote()">Nouvelle note</div>
 
 			<div class="clear"></div>
 
@@ -56,47 +56,20 @@
 		<section class="notes" unselectable="on" class="unselectable">
 			<div class="clear-display"></div>
 
-			<article class="note template-1">
+			<article class="note template-{{note.template}} {{note.open}}" ng-repeat="note in notes | filter:query | orderBy:predicate:reverse">
 				<header unselectable="on" class="unselectable">
-					<h1>Ma seconde note</h1>
-					<time datetime="2013-09-25 12:55">2013-09-25 12:55</time>
+					<h1 ng-click="openNote(note)">{{note.title}}</h1>
+					<time datetime="{{note.date | date:'yyyy-MM-dd H:m'}}">{{note.date | date:'dd/MM/yyyy H:m'}}</time>
 				</header unselectable="on" class="unselectable">
 				<div class="note-content">
-					<form action="#" method="post">
+					<form ng-submit="updateNote()">
 						<input type="hidden" name="note-name" />
-						<textarea name="note-text" class="input-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</textarea>
+						<textarea ng-model="noteContent" class="input-text">{{note.content}}</textarea>
 						<input type="submit" value="Enregistrer" class="input-button button-save" />
-						<input type="button" value="Annuler" class="input-button button-cancel" />
+						<input ng-click="cancelUpdateNote(note)" type="button" value="Annuler" class="input-button button-cancel" />
 					</form>
 				</div>
-				<div class="cross-icon"></div>
-			</article>
-
-			<article class="note template-2">
-				<header unselectable="on" class="unselectable">
-					<h1>Ma première note</h1>
-					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
-				</header unselectable="on" class="unselectable">
-				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
-				<div class="cross-icon"></div>
-			</article>
-
-			<article class="note template-3">
-				<header unselectable="on" class="unselectable">
-					<h1>Ma première note</h1>
-					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
-				</header unselectable="on" class="unselectable">
-				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
-				<div class="cross-icon"></div>
-			</article>
-
-			<article class="note template-4">
-				<header unselectable="on" class="unselectable">
-					<h1>Ma première note</h1>
-					<time datetime="2013-09-25 12:50">2013-09-25 12:50</time>
-				</header unselectable="on" class="unselectable">
-				<p class="note-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum ultricies lectus, id dignissim dolor. Donec auctor non elit sed dignissim. Fusce nunc lectus, viverra sit amet leo in, consectetur dictum erat. Vestibulum mauris lectus, viverra eget facilisis nec, auctor a elit. Nunc congue lorem nisi, nec varius risus mollis vitae. Vestibulum sodales ligula at urna tristique, ac gravida nisl congue. Vestibulum consectetur ultrices molestie. Morbi sagittis et enim nec bibendum. Fusce auctor faucibus odio, eu lobortis sem varius eget. Ut quis tincidunt est. Mauris purus diam, sodales a cursus eget, ornare in sem. In viverra eros tellus, posuere hendrerit tortor fermentum quis. Aenean ultricies urna sed quam posuere, ut ultricies risus gravida.</p>
-				<div class="cross-icon"></div>
+				<div class="cross-icon" ng-model="note.done"></div>
 			</article>
 
 		</section>

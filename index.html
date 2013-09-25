@@ -9,10 +9,37 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300" />
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body ng-app>
 
+	<div class="body-container">
 
+		<header class="body-header">
+
+			<div class="logo">
+				<h1>Angu<span>Notes</span></h1>
+				<div class="circle red"></div>
+				<div class="circle yellow"></div>
+				<div class="circle green"></div>
+				<div class="circle orange"></div>
+				<div class="circle blue"></div>
+				<div class="symbol"></div>
+			</div>
+
+			<div class="clear"></div>
+		</header>
+
+
+		<footer class="body-footer">
+			<p>
+				&copy; <time datetime="2013" rel="copyright">2013</time> <a href="http://xavierboubert" rel="author" target="_blank">Xavier Boubert</a>
+			</p>
+		</footer>
+
+	</div>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 	<script type="text/javascript" src="angu-notes.js"></script>

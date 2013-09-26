@@ -21,3 +21,13 @@ Fonctionnalités
 * Tout en CSS3, aucune image
 * Tout en Responsive
 * Le tout en seulement 3 fichiers (HTML, JS et CSS)
+
+
+TODO
+--------
+
+- Drag&Drop
+- Gérer les titres vides
+- Validation lors de la suppression d'une note
+- Le logo ne s'anime pas sur Chrome Windows 7
+- Ajout d'animations

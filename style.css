@@ -196,6 +196,7 @@ li {
 .operations {
 	margin-top: 4em;
 	padding: 0 1em;
+	display: none;
 }
 
 .operations label {
@@ -252,6 +253,7 @@ li {
 .notes {
 	margin-top: 0.5em;
 	padding: 0 1em;
+	display: none;
 }
 
 .note {

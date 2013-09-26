@@ -294,6 +294,20 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 		});
 	});
 
+	$("#notes-list").sortable({
+		update: function( event, ui ) {
+			var uiArray = $("#notes-list").sortable('toArray').reverse();
+			for (var i = 0; i < $scope.notes.length; i++) {
+				$scope.notes[i].order = uiArray.indexOf('note-'+$scope.notes[i].id) + 1;
+				Notes.update($scope.cloneNote($scope.notes[i]), false);
+			}
+			$scope.$apply();
+		}
+	});
+
+	$('#operations').css('display', 'block');
+	$('#notes-list').css('display', 'block');
+
 	$timeout(function() {
 		document.getElementById('add-note-input').focus();
 	});

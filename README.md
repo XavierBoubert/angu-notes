@@ -26,7 +26,7 @@ Fonctionnalités
 TODO
 --------
 
-- Drag&Drop
+- Quan on ajoute en plus d'un déja ajouté non sauvegardé, il n'est pas en 'open'
 - Gérer les titres vides
 - Validation lors de la suppression d'une note
 - Le logo ne s'anime pas sur Chrome Windows 7

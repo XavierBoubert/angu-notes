@@ -30,7 +30,8 @@
 
 			<section class="website-description" rel="description">
 				<p>
-					Projet démo de gestion de notes sous Angular.js. Aucun langage serveur, tout se passe sous javaScript.
+					Projet démo de gestion de notes sous Angular.js.<br />
+					Aucun langage serveur, tout se passe sous javaScript.
 				</p>
 				<p class="link-github">
 					Vous pouvez retrouver tous les détails du projet sur <a href="https://github.com/XavierBoubert/angu-notes" target="_blank">sa page GitHub</a>
@@ -50,11 +51,11 @@
 				Commencez par ajouter une première note en utilisant le champs texte juste au dessus.
 			</p>
 			<p>
-				Chaque note ajoutée sera enregistrée dans votre navigateur et ce meme si vous le fermez.
+				Chaque note ajoutée sera enregistrée dans votre navigateur et ce même si vous le fermez.
 			</p>
 		</div>
 
-		<div class="operations" ng-show="notes.length>0">
+		<div id="operations" class="operations" ng-show="notes.length>0">
 			<label class="label">Filtre :</label>
 			<div class="label-input">
 				<input type="text" class="input-text" ng-model="query" />
@@ -62,15 +63,14 @@
 			<div class="clear"></div>
 		</div>
 
-		<section class="notes" unselectable="on" class="unselectable">
-			<div class="clear-display"></div>
+		<section id="notes-list" class="notes" class="ui-sortable">
 
-			<article class="note template-{{note.template}} {{note.open}}" ng-repeat="note in notes | filter:query | orderBy:predicate:reverse">
-				<header unselectable="on" class="unselectable">
+			<article id="note-{{note.id}}" class="ui-state-default note template-{{note.template}} {{note.open}}" ng-repeat="note in notes | filter:query | orderBy:predicate:reverse">
+				<header>
 					<h1 ng-click="openNote(note)">{{note.title}}</h1>
 					<input id="note-title-{{note.id}}" type="text" class="input-text" value="{{note.title}}">
 					<time datetime="{{note.date | date:'yyyy-MM-dd H:m'}}">{{note.date | date:'dd/MM/yyyy H:m'}}</time>
-				</header unselectable="on" class="unselectable">
+				</header>
 				<div class="note-content">
 					<form ng-submit="updateNote(note)">
 						<textarea id="note-content-{{note.id}}" class="input-text">{{note.content}}</textarea>
@@ -85,12 +85,14 @@
 
 		<footer class="body-footer">
 			<p>
-				&copy; <time datetime="2013" rel="copyright">2013</time> <a href="http://xavierboubert" rel="author" target="_blank">Xavier Boubert</a>
+				&copy; <time datetime="2013" rel="copyright">2013</time> <a href="http://xavierboubert.fr" rel="author" target="_blank">Xavier Boubert</a>
 			</p>
 		</footer>
 
 	</div>
 
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.0/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
 	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script-->
 	<script type="text/javascript" src="angu-notes.js"></script>

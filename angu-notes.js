@@ -298,7 +298,7 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 		update: function( event, ui ) {
 			var uiArray = $("#notes-list").sortable('toArray').reverse();
 			for (var i = 0; i < $scope.notes.length; i++) {
-				$scope.notes[i].order = uiArray.indexOf('note-'+$scope.notes[i].id) + 1;
+				$scope.notes[i].order = uiArray.indexOf('note-' + $scope.notes[i].id) + 1;
 				Notes.update($scope.cloneNote($scope.notes[i]), false);
 			}
 			$scope.$apply();
@@ -309,7 +309,7 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 	$('#notes-list').css('display', 'block');
 
 	$timeout(function() {
-		document.getElementById('add-note-input').focus();
+		$('#add-note-input').focus();
 	});
 
 	$scope.cloneNote = function(note) {
@@ -330,7 +330,7 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 	};
 
 	$scope.addNote = function() {
-		$scope.closeNotes();
+		openLastNote = true;
 
 		Notes.add({
 			order: Notes.elements.length,
@@ -342,13 +342,12 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 			date: new Date(),
 			dateString: $filter('date')(new Date(), 'dd/MM/yyyy hh:mm')
 		});
-		openLastNote = true;
 
 		$scope.newNoteTitle = '';
 	};
 
 	$scope.closeNotes = function(note) {
-		note = note || {};
+		note = note || false;
 		var hasTrash = false;
 		for(var i = 0; i < $scope.notes.length; i++) {
 
@@ -363,6 +362,9 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 		}
 		if(hasTrash) {
 			Notes.remove(hasTrash);
+			if(note) {
+				openLastNote = true;
+			}
 		}
 	};
 
@@ -371,15 +373,15 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 		note.open = 'open';
 
 		$timeout(function() {
-			document.getElementById('note-content-' + note.id).focus();
+			$('#note-content-' + note.id).focus();
 		});
 	};
 
 	$scope.updateNote = function(note) {
 		note.isNew = false;
 		note.open = '';
-		note.title = document.getElementById('note-title-' + note.id).value;
-		note.content = document.getElementById('note-content-' + note.id).value;
+		note.title = $('#note-title-' + note.id).val();
+		note.content = $('#note-content-' + note.id).val();
 
 		Notes.update($scope.cloneNote(note), false);
 
@@ -387,8 +389,8 @@ function AnguNotesCtrl($scope, $timeout, $filter, Notes) {
 	};
 
 	$scope.cancelUpdateNote = function(note) {
-		document.getElementById('note-title-' + note.id).value = note.title;
-		document.getElementById('note-content-' + note.id).value = note.content;
+		$('#note-title-' + note.id).val(note.title);
+		$('#note-content-' + note.id).val(note.content);
 
 		$scope.closeNotes();
 	};
